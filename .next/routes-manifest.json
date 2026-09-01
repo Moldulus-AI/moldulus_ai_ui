@@ -1,0 +1,180 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "onMatchHeaders": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/app/workspace/[domain]",
+      "regex": "^/app/workspace/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPdomain": "nxtPdomain"
+      },
+      "namedRegex": "^/app/workspace/(?<nxtPdomain>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/app",
+      "regex": "^/app(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/app(?:/)?$"
+    },
+    {
+      "page": "/company",
+      "regex": "^/company(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/company(?:/)?$"
+    },
+    {
+      "page": "/developers",
+      "regex": "^/developers(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/developers(?:/)?$"
+    },
+    {
+      "page": "/enterprise",
+      "regex": "^/enterprise(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/enterprise(?:/)?$"
+    },
+    {
+      "page": "/intelligence",
+      "regex": "^/intelligence(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/intelligence(?:/)?$"
+    },
+    {
+      "page": "/intelligence/build",
+      "regex": "^/intelligence/build(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/intelligence/build(?:/)?$"
+    },
+    {
+      "page": "/intelligence/engineering",
+      "regex": "^/intelligence/engineering(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/intelligence/engineering(?:/)?$"
+    },
+    {
+      "page": "/intelligence/fashion",
+      "regex": "^/intelligence/fashion(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/intelligence/fashion(?:/)?$"
+    },
+    {
+      "page": "/intelligence/finance",
+      "regex": "^/intelligence/finance(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/intelligence/finance(?:/)?$"
+    },
+    {
+      "page": "/intelligence/health",
+      "regex": "^/intelligence/health(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/intelligence/health(?:/)?$"
+    },
+    {
+      "page": "/intelligence/home",
+      "regex": "^/intelligence/home(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/intelligence/home(?:/)?$"
+    },
+    {
+      "page": "/intelligence/industrial",
+      "regex": "^/intelligence/industrial(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/intelligence/industrial(?:/)?$"
+    },
+    {
+      "page": "/intelligence/property",
+      "regex": "^/intelligence/property(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/intelligence/property(?:/)?$"
+    },
+    {
+      "page": "/research",
+      "regex": "^/research(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/research(?:/)?$"
+    },
+    {
+      "page": "/signin",
+      "regex": "^/signin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/signin(?:/)?$"
+    },
+    {
+      "page": "/signup",
+      "regex": "^/signup(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/signup(?:/)?$"
+    },
+    {
+      "page": "/solutions",
+      "regex": "^/solutions(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/solutions(?:/)?$"
+    },
+    {
+      "page": "/systems",
+      "regex": "^/systems(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/systems(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}
