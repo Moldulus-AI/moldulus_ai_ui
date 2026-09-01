@@ -1,10 +1,1 @@
-{
-  "/company/page": "app/company/page.js",
-  "/developers/page": "app/developers/page.js",
-  "/enterprise/page": "app/enterprise/page.js",
-  "/page": "app/page.js",
-  "/research/page": "app/research/page.js",
-  "/signin/page": "app/signin/page.js",
-  "/solutions/page": "app/solutions/page.js",
-  "/systems/page": "app/systems/page.js"
-}
+{}
