@@ -10,22 +10,33 @@ interface MoldulusInputProps {
   onBlur?: () => void
   className?: string
   redirectToApp?: boolean
+  /** If set, submitting opens /app/workspace/<workspace>?q=<prompt> and the AI answers immediately. */
+  workspace?: string
+  /** Custom submit handler (e.g. to route the prompt to the best domain). Takes priority over the above. */
+  onSubmit?: (value: string) => void
 }
 
 const MoldulusInput = forwardRef<HTMLInputElement, MoldulusInputProps>(
-  ({ placeholder = "Ask Moldulus anything…", size = "default", onFocus, onBlur, className = "", redirectToApp = true }, ref) => {
+  ({ placeholder = "Ask Moldulus anything…", size = "default", onFocus, onBlur, className = "", redirectToApp = true, workspace, onSubmit }, ref) => {
     const [value, setValue] = useState("")
     const router = useRouter()
 
     const isLarge = size === "large"
 
     const handleSubmit = () => {
-      if (!value.trim()) return
-      if (redirectToApp) router.push("/app")
+      const text = value.trim()
+      if (!text) return
+      if (onSubmit) {
+        onSubmit(text)
+      } else if (workspace) {
+        router.push(`/app/workspace/${workspace}?q=${encodeURIComponent(text)}`)
+      } else if (redirectToApp) {
+        router.push("/app")
+      }
     }
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
-      if (e.key === "Enter") handleSubmit()
+      if (e.key === "Enter" && !e.nativeEvent.isComposing) handleSubmit()
     }
 
     return (

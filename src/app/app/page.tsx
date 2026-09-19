@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import MoldulusInput from "@/components/MoldulusInput"
+import { routeDomain } from "@/lib/routeDomain"
 
 const domains = [
   { name: "Build", href: "/app/workspace/build", color: "bg-stone-100 hover:bg-stone-200", dot: "bg-amber-500" },
@@ -31,22 +31,11 @@ const suggestions = [
 ]
 
 export default function AppHomePage() {
-  const [aiResponse, setAiResponse] = useState<string | null>(null)
   const router = useRouter()
 
+  // Pick the best workspace for the prompt and open it; the workspace answers immediately.
   const handlePromptSubmit = (prompt: string) => {
-    const lower = prompt.toLowerCase()
-    if (lower.includes("build") || lower.includes("house") || lower.includes("plan") || lower.includes("construct")) {
-      setAiResponse("Build can help with that.")
-    } else if (lower.includes("property") || lower.includes("site") || lower.includes("development")) {
-      setAiResponse("Property can help with that.")
-    } else if (lower.includes("fashion") || lower.includes("sketch") || lower.includes("garment")) {
-      setAiResponse("Fashion can help with that.")
-    } else if (lower.includes("engineer") || lower.includes("component") || lower.includes("technical")) {
-      setAiResponse("Engineering can help with that.")
-    } else {
-      setAiResponse("Build can help with that.")
-    }
+    router.push(`/app/workspace/${routeDomain(prompt)}?q=${encodeURIComponent(prompt)}`)
   }
 
   return (
@@ -103,45 +92,22 @@ export default function AppHomePage() {
           <MoldulusInput
             size="large"
             placeholder="Ask Moldulus…"
-            redirectToApp={false}
+            onSubmit={handlePromptSubmit}
           />
         </div>
 
-        {/* AI routing response */}
-        {aiResponse && (
-          <div className="mb-8 p-4 rounded-xl bg-accent/6 border border-accent/15 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center">
-                <span className="text-white text-[11px] font-800">M</span>
-              </div>
-              <span className="text-[15px] font-semibold text-foreground">{aiResponse}</span>
-            </div>
-            <button
-              onClick={() => router.push("/app/workspace/build")}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-white text-[14px] font-semibold hover:bg-accent-hover transition-colors"
-            >
-              Continue with Build
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          </div>
-        )}
-
         {/* Suggested prompts */}
-        {!aiResponse && (
-          <div className="flex flex-col gap-2 mb-12">
-            {suggestions.map((s) => (
-              <button
-                key={s}
-                onClick={() => handlePromptSubmit(s)}
-                className="text-left px-5 py-3.5 rounded-xl border border-border bg-surface text-[15px] font-medium text-muted hover:text-foreground hover:border-accent/30 hover:bg-secondary transition-all"
-              >
-                {s}
-              </button>
-            ))}
-          </div>
-        )}
+        <div className="flex flex-col gap-2 mb-12">
+          {suggestions.map((s) => (
+            <button
+              key={s}
+              onClick={() => handlePromptSubmit(s)}
+              className="text-left px-5 py-3.5 rounded-xl border border-border bg-surface text-[15px] font-medium text-muted hover:text-foreground hover:border-accent/30 hover:bg-secondary transition-all"
+            >
+              {s}
+            </button>
+          ))}
+        </div>
 
         {/* Recent work */}
         <div>

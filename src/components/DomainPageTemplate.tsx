@@ -433,7 +433,7 @@ function DomainPageTemplate({ domainKey }: { domainKey: string }) {
           <h2 className="text-[clamp(36px,4vw,56px)] font-800 text-foreground tracking-tight leading-[1.1] mb-8">
             {d.finalCta}
           </h2>
-          <MoldulusInput size="large" placeholder={`Ask ${d.name}…`} />
+          <MoldulusInput size="large" placeholder={`Ask ${d.name}…`} workspace={d.slug} />
         </div>
       </section>
 
